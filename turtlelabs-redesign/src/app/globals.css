@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand Colours (Emerald Glass) ────────────── */
+  --color-forest: #0d4d42;
+  /* deep emerald/teal   */
+  --color-forest-mid: #12786a;
+  /* vibrant emerald     */
+  --color-forest-light: #d6f5f0;
+  /* pale mint/teal      */
+  --color-gold: #c8a96e;
+  /* warm gold accent    */
+  --color-gold-light: #f0e2c0;
+  /* pale gold tint      */
+
+  /* ── Neutrals (Muted & Calm) ──────────────────── */
+  --color-background: #f0f2f0;
+  /* muted sage-white    */
+  --color-foreground: #0a2622;
+  /* deep teal-black     */
+  --color-surface: #e9ece9;
+  /* muted mid-grey      */
+  --color-border: #d8e0da;
+  /* subtle teal border   */
+  --color-muted: #5c7a75;
+  /* darker muted teal   */
+
+  /* ── Typography ────────────────────────────────── */
+  --font-sans: "Outfit", sans-serif;
+  --font-mono: "DM Mono", monospace;
+
+  /* ── Shadows ───────────────────────────────────── */
+  --shadow-glass: 0 8px 40px rgba(26, 61, 43, 0.08);
+  --shadow-card: 0 2px 16px rgba(26, 61, 43, 0.06);
+}
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* subtle grain texture */
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200, 169, 110, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 90% 110%, rgba(26, 61, 43, 0.06) 0%, transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-forest);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-muted {
+    color: var(--color-muted);
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+  }
+
+  .bg-forest {
+    background-color: var(--color-forest);
+  }
+
+  /* radial gradient helper for the hero vignette scrim */
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+
+  /* glass surface - warm & comforting */
+  .glass {
+    background: rgba(252, 252, 250, 0.75);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(224, 232, 228, 0.6);
+  }
+
+  /* animated gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-forest) 0%, var(--color-forest-mid) 40%, var(--color-gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
