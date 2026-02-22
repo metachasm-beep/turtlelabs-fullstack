@@ -1,0 +1,18 @@
+name: Keep Alive
+
+on:
+  schedule:
+    # Runs every 14 minutes to prevent Render free tier from sleeping (15min timeout)
+    - cron: '*/14 * * * *'
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Frontend
+        run: curl -sL https://turtlelabs-redesign.vercel.app/ > /dev/null
+
+      - name: Ping Backend
+        # We ping a specific API endpoint to ensure the database stays active
+        run: curl -sL https://turtlelabs-fullstack.onrender.com/api/food > /dev/null
