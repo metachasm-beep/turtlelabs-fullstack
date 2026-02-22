@@ -80,10 +80,15 @@ async function main() {
     ];
 
     for (const project of projects) {
-        const createdProject = await prisma.project.create({
-            data: project as any, // casting to any due to Category enum typing in seed environment
+        const createdProject = await prisma.project.upsert({
+            where: { id: `seed-${project.title.toLowerCase().replace(/\s+/g, '-')}` },
+            update: project as any,
+            create: {
+                id: `seed-${project.title.toLowerCase().replace(/\s+/g, '-')}`,
+                ...project as any
+            },
         });
-        console.log(`✅ Created project: ${createdProject.title}`);
+        console.log(`✅ Seeded project: ${createdProject.title}`);
     }
 
     console.log('🏁 Seeding finished.');
